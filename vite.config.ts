@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import { nitro } from 'nitro/vite'
 import viteReact from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
     tanstackStart({ srcDirectory: 'app' }),
+    nitro(),
     viteReact(),
     VitePWA({
       registerType: 'autoUpdate',
