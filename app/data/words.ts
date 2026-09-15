@@ -10,17 +10,17 @@ export type Category =
   | 'noun'
   | 'function'
 
-export interface Word {
+export interface Word<C extends string = string> {
   n: number
   en: string
   de: string
-  cat: Category
+  cat: C
   note?: string
   /** rough English-reader phonetic respelling, stress in CAPS */
   pron: string
 }
 
-export const WORDS: Word[] = [
+export const WORDS: Word<Category>[] = [
   { n: 1, en: 'a, an', de: 'ein / eine', cat: 'function', note: 'gender-dependent: ein Mann, eine Frau', pron: 'ayn / AY-nuh' },
   { n: 2, en: 'after', de: 'nach', cat: 'prep', pron: 'nahkh' },
   { n: 3, en: 'again', de: 'wieder', cat: 'time', pron: 'VEE-der' },

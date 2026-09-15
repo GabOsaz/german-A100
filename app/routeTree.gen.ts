@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as A1WordsRouteImport } from './routes/a1-words'
+import { Route as StudyGuideRouteImport } from './routes/study-guide'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const A1WordsRoute = A1WordsRouteImport.update({
+  id: '/a1-words',
+  path: '/a1-words',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudyGuideRoute = StudyGuideRouteImport.update({
+  id: '/study-guide',
+  path: '/study-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a1-words': typeof A1WordsRoute
+  '/study-guide': typeof StudyGuideRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a1-words': typeof A1WordsRoute
+  '/study-guide': typeof StudyGuideRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a1-words': typeof A1WordsRoute
+  '/study-guide': typeof StudyGuideRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/a1-words' | '/study-guide'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/a1-words' | '/study-guide'
+  id: '__root__' | '/' | '/a1-words' | '/study-guide'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  A1WordsRoute: typeof A1WordsRoute
+  StudyGuideRoute: typeof StudyGuideRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/a1-words': {
+      id: '/a1-words'
+      path: '/a1-words'
+      fullPath: '/a1-words'
+      preLoaderRoute: typeof A1WordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/study-guide': {
+      id: '/study-guide'
+      path: '/study-guide'
+      fullPath: '/study-guide'
+      preLoaderRoute: typeof StudyGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  A1WordsRoute: A1WordsRoute,
+  StudyGuideRoute: StudyGuideRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
