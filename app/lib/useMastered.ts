@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export function useMastered(key: string) {
-  const [mastered, setMastered] = useState<Set<number>>(new Set())
+export function useMastered<T extends number | string = number>(key: string) {
+  const [mastered, setMastered] = useState<Set<T>>(new Set())
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export function useMastered(key: string) {
     }
   }, [mastered, loaded, key])
 
-  function toggle(n: number) {
+  function toggle(n: T) {
     setMastered((prev) => {
       const next = new Set(prev)
       next.has(n) ? next.delete(n) : next.add(n)

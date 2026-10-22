@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as A1WordsRouteImport } from './routes/a1-words'
+import { Route as A2PrepRouteImport } from './routes/a2-prep'
 import { Route as StudyGuideRouteImport } from './routes/study-guide'
+import { Route as VerbsRouteImport } from './routes/verbs'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +25,58 @@ const A1WordsRoute = A1WordsRouteImport.update({
   path: '/a1-words',
   getParentRoute: () => rootRouteImport,
 } as any)
+const A2PrepRoute = A2PrepRouteImport.update({
+  id: '/a2-prep',
+  path: '/a2-prep',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudyGuideRoute = StudyGuideRouteImport.update({
   id: '/study-guide',
   path: '/study-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerbsRoute = VerbsRouteImport.update({
+  id: '/verbs',
+  path: '/verbs',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a1-words': typeof A1WordsRoute
+  '/a2-prep': typeof A2PrepRoute
   '/study-guide': typeof StudyGuideRoute
+  '/verbs': typeof VerbsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a1-words': typeof A1WordsRoute
+  '/a2-prep': typeof A2PrepRoute
   '/study-guide': typeof StudyGuideRoute
+  '/verbs': typeof VerbsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/a1-words': typeof A1WordsRoute
+  '/a2-prep': typeof A2PrepRoute
   '/study-guide': typeof StudyGuideRoute
+  '/verbs': typeof VerbsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/a1-words' | '/study-guide'
+  fullPaths: '/' | '/a1-words' | '/a2-prep' | '/study-guide' | '/verbs'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/a1-words' | '/study-guide'
-  id: '__root__' | '/' | '/a1-words' | '/study-guide'
+  to: '/' | '/a1-words' | '/a2-prep' | '/study-guide' | '/verbs'
+  id: '__root__' | '/' | '/a1-words' | '/a2-prep' | '/study-guide' | '/verbs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   A1WordsRoute: typeof A1WordsRoute
+  A2PrepRoute: typeof A2PrepRoute
   StudyGuideRoute: typeof StudyGuideRoute
+  VerbsRoute: typeof VerbsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof A1WordsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/a2-prep': {
+      id: '/a2-prep'
+      path: '/a2-prep'
+      fullPath: '/a2-prep'
+      preLoaderRoute: typeof A2PrepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/study-guide': {
       id: '/study-guide'
       path: '/study-guide'
       fullPath: '/study-guide'
       preLoaderRoute: typeof StudyGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verbs': {
+      id: '/verbs'
+      path: '/verbs'
+      fullPath: '/verbs'
+      preLoaderRoute: typeof VerbsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +122,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   A1WordsRoute: A1WordsRoute,
+  A2PrepRoute: A2PrepRoute,
   StudyGuideRoute: StudyGuideRoute,
+  VerbsRoute: VerbsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -44,6 +44,18 @@ function RootComponent() {
             A1 Words
           </Link>
           <Link
+            to="/verbs"
+            className="flex-none whitespace-nowrap rounded-lg border border-line px-3 py-1.5 text-xs text-ink-dim transition-colors [&.active]:border-gold-dim [&.active]:bg-panel2 [&.active]:font-semibold [&.active]:text-gold"
+          >
+            Verbs
+          </Link>
+          <Link
+            to="/a2-prep"
+            className="flex-none whitespace-nowrap rounded-lg border border-line px-3 py-1.5 text-xs text-ink-dim transition-colors [&.active]:border-gold-dim [&.active]:bg-panel2 [&.active]:font-semibold [&.active]:text-gold"
+          >
+            A2 Prep
+          </Link>
+          <Link
             to="/study-guide"
             className="flex-none whitespace-nowrap rounded-lg border border-line px-3 py-1.5 text-xs text-ink-dim transition-colors [&.active]:border-gold-dim [&.active]:bg-panel2 [&.active]:font-semibold [&.active]:text-gold"
           >
